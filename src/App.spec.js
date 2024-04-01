@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { mount, shallowMount } from "@vue/test-utils";
 import App from "@/App.vue";
 
