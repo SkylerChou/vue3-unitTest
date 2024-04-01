@@ -16,10 +16,10 @@ export default {
 };
 </script>
 <template>
-  <h1>{{ idx }}</h1>
+  <h1 class="count_title">{{ idx }}</h1>
   <div class="btn-box">
-    <button id="add" class="add-btn" @click="add">add 按鈕</button>
-    <button id="remove" class="remove-btn" @click="remove">remove 按鈕</button>
+    <button id="add" class="add_btn" @click="add">add 按鈕</button>
+    <button id="remove" class="remove_btn" @click="remove">remove 按鈕</button>
   </div>
 </template>
 
@@ -29,6 +29,6 @@ export default {
   justify-content: space-between;
   align-items: center;
   width: 150px;
-  margin: 0 auto;
+  margin: 0 auto 20px auto;
 }
 </style>

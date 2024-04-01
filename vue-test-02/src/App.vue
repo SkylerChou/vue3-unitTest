@@ -1,34 +1,48 @@
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-import AddCount from "./components/AddCount.vue";
-import UserList from "./components/UserList.vue";
-import CardBox from "./components/CardBox";
-import PhotoItem from "./components/PhotoItem";
+import { ref } from "vue";
+import CountList from "./components/CountList";
+import ContentBox from "./components/ContentBox";
+import BoxData from "./components/BoxData";
+import AddCount from "./components/AddCount";
+import InputBar from "./components/InputBar";
+import Combination from "./components/Combination";
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    CountList,
     AddCount,
-    UserList,
-    CardBox,
-    PhotoItem,
+    BoxData,
+    ContentBox,
+    InputBar,
+    Combination,
+  },
+  setup() {
+    const num = ref("0");
+
+    const setNun = (coin) => {
+      num.value = coin;
+    };
+
+    return {
+      num,
+      setNun,
+    };
   },
 };
 </script>
 
 <template>
-  <img class="logo" alt="Vue logo" src="./assets/logo.png" />
-  <h1>Test demo</h1>
+  <img alt="Vue logo" src="./assets/logo.png" />
+  <CountList />
   <AddCount />
-  <HelloWorld />
-  <div class="itemFlex">
-    <CardBox v-for="i in 4" :key="i" />
-  </div>
-  <UserList />
-  <PhotoItem />
+  <InputBar />
+  <Combination :thousand="21821671" @Combination="setNun" />
+  <h1>{{ num }}</h1>
+  <BoxData />
+  <ContentBox />
 </template>
 
-<style>
+<style lang="scss">
 * {
   padding: 0;
   margin: 0;
@@ -41,19 +55,5 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  padding-bottom: 60px;
-}
-img {
-  display: block;
-}
-.logo {
-  margin: 0 auto;
-}
-.itemFlex {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  margin: 10px auto;
-  width: 840px;
 }
 </style>
