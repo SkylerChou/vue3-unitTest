@@ -27,3 +27,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### eslint-plugin-jest
+See [Configuration Reference](https://www.npmjs.com/package/eslint-plugin-jest).
