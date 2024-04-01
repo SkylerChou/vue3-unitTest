@@ -1,4 +1,6 @@
-# vue-test-01
+# vue3-unitTest
+
+See [Jest官方文件](https://jestjs.io/docs/using-matchers).
 
 ## Project setup
 ```
