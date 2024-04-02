@@ -1,6 +1,5 @@
 import { mount } from "@vue/test-utils";
 import App from "@/App.vue";
-import { gitHubRequest } from "@/api";
 
 const mockData = {
   login: "MikeCheng1208",
@@ -45,21 +44,20 @@ const newMock = {
   avatar_url: "https://avatars.githubusercontent.com/u/7043304?v=4",
 };
 
+/**
+ * https://jestjs.io/docs/jest-object#jestmockmodulename-factory-options
+ */
+jest.mock("./api", () => ({
+  getUserData: jest.fn(() => Promise.resolve({ data: mockData })),
+}));
+
 describe("App.vue", () => {
-  it("test fetch api data", async () => {
+  it("test api data", async () => {
     const wrapper = mount(App);
-    jest.spyOn(gitHubRequest, "get");
-
-    gitHubRequest.get.mockImplementation(() => {
-      return Promise.resolve({ data: mockData });
-    });
-
     await wrapper.find("button").trigger("click");
 
-    /**
-     * https://jestjs.io/docs/expect#toequalvalue
-     * toEqual 是用來比較物件
-     */
-    expect(JSON.parse(wrapper.find("pre").text())).toEqual(mockData);
+    const preText = JSON.parse(wrapper.find("pre").text());
+
+    expect(preText).toEqual(mockData);
   });
 });
