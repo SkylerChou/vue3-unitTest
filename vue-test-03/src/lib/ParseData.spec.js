@@ -17,8 +17,20 @@ describe("ParseData.js", () => {
     const newColor = "red";
 
     /**
-     * toContain 檢查陣列有沒有包含這個值，並回傳布林值
+     * toContain 檢查陣列有沒有包含這個值(Sting)，並回傳布林值
      */
     expect(ColorArrPush(colorArr, "red")).toContain(newColor);
+  });
+
+  it("test 2 demo", () => {
+    const obj = {
+      title: "123",
+      link: "456",
+      text: "test demo",
+    };
+    /**
+     * toContainEqual 檢查陣列是否有符合的內容(object)
+     */
+    expect(ParseData("地震", searchData, obj)["地震"]).toContainEqual(obj);
   });
 });
