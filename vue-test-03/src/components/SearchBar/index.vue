@@ -97,7 +97,7 @@ export default {
           {{ item.title }}
         </a>
         <a :href="item.link" target="_blank" class="link">{{ item.link }}</a>
-        <p>{{ item.text }}</p>
+        <p class="content">{{ item.text }}</p>
       </div>
     </div>
   </div>

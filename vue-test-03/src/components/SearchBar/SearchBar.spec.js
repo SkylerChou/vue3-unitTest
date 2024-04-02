@@ -20,4 +20,14 @@ describe("SearchBar.vue", () => {
       expect(item.text()).toBe(titleArr[idx]);
     });
   });
+
+  it("test toMatch", async () => {
+    const wrapper = mount(SearchBar);
+
+    await wrapper.find(".text3").trigger("click");
+
+    expect(wrapper.find(".title").html()).toMatch("館長");
+
+    expect(wrapper.find(".content").html()).toMatch("健身");
+  });
 });
