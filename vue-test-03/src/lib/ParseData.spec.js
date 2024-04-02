@@ -12,4 +12,13 @@ const searchData = {
 
 const colorArr = ["blue", "white", "black", "yellow"];
 
-describe("ParseData.js", () => {});
+describe("ParseData.js", () => {
+  it("test 1 demo", () => {
+    const newColor = "red";
+
+    /**
+     * toContain 檢查陣列有沒有包含這個值，並回傳布林值
+     */
+    expect(ColorArrPush(colorArr, "red")).toContain(newColor);
+  });
+});
