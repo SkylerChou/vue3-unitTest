@@ -1,5 +1,6 @@
 import { flushPromises, mount } from "@vue/test-utils";
 import Courses from "./index.vue";
+import { useRouter } from "vue-router";
 
 const mockData = [
   {
@@ -64,7 +65,22 @@ describe("Courses", () => {
     expect(wrapper.findAll(".card")).toHaveLength(3);
   });
 
-  it("click course push page", () => {
+  it("click course push page", async () => {
+    const push = jest.fn();
+
+    useRouter.mockImplementation(() => ({
+      push,
+    }));
+
     const wrapper = mount(Courses);
+
+    await flushPromises();
+
+    await wrapper.findAll(".card").at(0).trigger("click");
+    expect(push).toHaveBeenCalledWith("/courses/286");
+    await wrapper.findAll(".card").at(1).trigger("click");
+    expect(push).toHaveBeenCalledWith("/courses/419");
+    await wrapper.findAll(".card").at(2).trigger("click");
+    expect(push).toHaveBeenCalledWith("/courses/418");
   });
 });
