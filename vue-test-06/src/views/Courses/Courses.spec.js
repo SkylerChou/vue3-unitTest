@@ -1,4 +1,4 @@
-import { mount } from "@vue/test-utils";
+import { flushPromises, mount } from "@vue/test-utils";
 import Courses from "./index.vue";
 
 const mockData = [
@@ -43,9 +43,25 @@ const mockData = [
   },
 ];
 
+// 攔截外部引入方法
+jest.mock("vue-router", () => ({
+  useRouter: jest.fn(() => ({
+    push: jest.fn(),
+    resolve: jest.fn(),
+  })),
+}));
+
+jest.mock("axios", () => ({
+  get: jest.fn(() => Promise.resolve({ data: mockData })),
+}));
+
 describe("Courses", () => {
-  it("courses onMounted fetch api data remder list", () => {
+  it("courses onMounted fetch api data remder list", async () => {
     const wrapper = mount(Courses);
+    // 確保DOM更新完成之後 (要等待元素渲染完)，flushPromises 相當於 nextTick 的概念 (數據更新後，DOM 非同步更新也完成後)，回傳都是 Promise
+    await flushPromises();
+
+    expect(wrapper.findAll(".card")).toHaveLength(3);
   });
 
   it("click course push page", () => {

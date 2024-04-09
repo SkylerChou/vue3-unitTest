@@ -17,11 +17,9 @@ export default {
     };
 
     onMounted(() => {
-      axios
-        .get("https://vue-lessons-api.herokuapp.com/courses/list")
-        .then((res) => {
-          courses.data = res.data;
-        });
+      axios.get("/data.json").then((res) => {
+        courses.data = res.data;
+      });
     });
 
     return { courses, goToCourses, openNewTab };
